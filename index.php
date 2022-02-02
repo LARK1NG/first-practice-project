@@ -2,17 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="http://localhost/style.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost/style.css?after">
   </head>
   <body id="target">
     <header>
-      <h1><a href="http://localhost/">JavaScript</a></h1>
+      <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/course/94.png"
+      alt="생활코딩">
+      <h1><a href="http://localhost/index.php">JavaScript</a></h1>
     </header>
     <nav>
       <ol>
-        <li><a href="http://localhost/page_html.html">Javascript란?</a></li>
-        <li><a href="http://localhost/page_vc.html">변수와 상수</a></li>
-        <li><a href="http://localhost/page_op.html">연산자</a></li>
+      <?php
+        echo file_get_contents("list.txt");
+       ?>
       </ol>
     </nav>
     <div id="control">
@@ -28,8 +30,11 @@
       />
     </div>
     <article>
-      <h2>JavaScript</h2>
-      JavaScript는 웹페이지를 프로그래밍적으로 제어하는 언어입니다.
+      <?php
+        if(empty($_GET['id'])==false){
+        echo file_get_contents($_GET['id'].".txt");
+        }
+       ?>
     </article>
   </body>
 </html>
