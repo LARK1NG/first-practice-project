@@ -7,7 +7,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="http://localhost/style.css?after">
+        <link rel="stylesheet" type="text/css" href="http://localhost/style.css?after">
   </head>
   <body id="target">
     <header>
@@ -38,8 +38,12 @@
     </div>
     <article>
       <?php
-        if(empty($_GET['id'])==false){
-        echo file_get_contents($_GET['id'].".txt");
+        if(empty($_GET['id']) === false) {
+          $sql = 'SELECT * FROM topic WHERE id='.$_GET['id'];
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_assoc($result);
+          echo '<h2>'.$row['title'].'</h2>';
+          echo $row['description'];
         }
        ?>
     </article>
