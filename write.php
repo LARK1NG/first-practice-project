@@ -38,15 +38,32 @@
       <a href="http://localhost/write.php">쓰기</a>
     </div>
     <article>
-      <?php
-        if(empty($_GET['id']) === false) {
-          $sql = 'SELECT * FROM topic WHERE id='.$_GET['id'];
-          $result = mysqli_query($conn, $sql);
-          $row = mysqli_fetch_assoc($result);
-          echo '<h2>'.$row['title'].'</h2>';
-          echo $row['description'];
-        }
-       ?>
+      <form action="process.php" method="post">
+        <p>
+          제목: <input type="text" name="title">
+        </p>
+        <p>
+          작성자: <input type="text" name="author">
+        </p>
+        <p>
+          본문: <textarea name="description" id="description"></textarea>
+        </p>
+        <input type="hidden" role="uploadcare-uploader" />
+        <input type="submit" name="name">
+      </form>
     </article>
+    <script>
+      UPLOADCARE_PUBLIC_KEY = "118cc7b50e87da2e081b"
+      UPLOADCARE_TABS = "file camera url facebook gdrive gphotos"
+    </script>
+
+    <script>
+      var singleWidget = uploadcare.SingleWidget('[role=uploadcare-uploader]');
+      singleWiget.onUploadComplete(function(info){
+        document.getElementById('description').
+        value = document.getElementById('description').
+        value + '<img src="'+info.cdnUrl+'">';
+      });
+    </script>
   </body>
 </html>
