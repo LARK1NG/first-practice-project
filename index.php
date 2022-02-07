@@ -25,43 +25,51 @@
       alt="생활코딩">
       <h1><a href="http://localhost/index.php">JavaScript</a></h1>
     </header>
-    <nav>
-      <ol>
-      <?php
-      while($row=mysqli_fetch_assoc($result)){
-        echo '<li><a href="http://localhost/index.php?id='.
-        $row['id'].'">'.htmlspecialchars($row['title']).'</a></li>'."\n";
-      }
-       ?>
-      </ol>
-    </nav>
-    <div id="control">
-      <input
-        type="button"
-        value="white"
-        onclick="document.getElementById('target').className='white'"
-      />
-      <input
-        type="button"
-        value="black"
-        onclick="document.getElementById('target').className='black'"
-      />
-      <a href="http://localhost/write.php">쓰기</a>
+    <div class="row">
+
+      <nav class="col-md-3">
+        <ol>
+        <?php
+        while($row=mysqli_fetch_assoc($result)){
+          echo '<li><a href="http://localhost/index.php?id='.
+          $row['id'].'">'.htmlspecialchars($row['title']).'</a></li>'."\n";
+        }
+         ?>
+        </ol>
+      </nav>
+
+      <div class="col-md-9">
+
+        <div id="control">
+          <input
+            type="button"
+            value="white"
+            onclick="document.getElementById('target').className='white'"
+          />
+          <input
+            type="button"
+            value="black"
+            onclick="document.getElementById('target').className='black'"
+          />
+          <a href="http://localhost/write.php">쓰기</a>
+        </div>
+        <article>
+          <?php
+          if(empty($_GET['id']) === false) {
+            $sql = 'SELECT * FROM topic WHERE id='.$_GET['id'];
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            echo '<h2>'.htmlspecialchars($row['title']).'</h2>';
+            echo '<p>'.htmlspecialchars($row['author']).'</p>';
+            echo strip_tags(
+              $row['description'], '<a>,<h1>,<h2>,<h3>,<h4>,<h5>,<ul>,<ol>,<li>'
+            );
+          }
+           ?>
+        </article>
+      </div>
+
     </div>
-    <article>
-      <?php
-      if(empty($_GET['id']) === false) {
-        $sql = 'SELECT * FROM topic WHERE id='.$_GET['id'];
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        echo '<h2>'.htmlspecialchars($row['title']).'</h2>';
-        echo '<p>'.htmlspecialchars($row['author']).'</p>';
-        echo strip_tags(
-          $row['description'], '<a>,<h1>,<h2>,<h3>,<h4>,<h5>,<ul>,<ol>,<li>'
-        );
-      }
-       ?>
-    </article>
     <script
     src= "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
     </script>
