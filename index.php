@@ -17,15 +17,15 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
   <meta http-http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,
     initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="http://localhost/style.css">
-  <link rel="stylesheet" href="http://localhost/bootstrap-3.3.4-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="/bootstrap-3.3.4-dist/css/bootstrap.min.css">
 </head>
 
 <body id="target">
   <div class="container">
     <header class="jumbotron text-center">
       <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/course/94.png" alt="생활코딩" class="img-circle" id="logo">
-      <h1><a href="http://localhost/index.php">JavaScript</a></h1>
+      <h1><a href="/index.php">JavaScript</a></h1>
     </header>
     <div class="row">
 
@@ -33,7 +33,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
         <ol class="nav nav-pills nav-stacked">
           <?php
           while ($row = mysqli_fetch_assoc($result)) {
-            echo '<li><a href="http://localhost/index.php?id=' .
+            echo '<li><a href="/index.php?id=' .
               $row['id'] . '">' . htmlspecialchars($row['title']) . '</a></li>' . "\n";
           }
           ?>
@@ -63,7 +63,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
             <input type="button" value="white" onclick="document.getElementById('target').className='white'" class="btn btn-default btn-lg" />
             <input type="button" value="black" onclick="document.getElementById('target').className='black'" class="btn btn-default btn-lg" />
           </div>
-          <a href="http://localhost/write.php" class="btn btn-success btn-lg">쓰기</a>
+          <a href="/write.php" class="btn btn-success btn-lg">쓰기</a>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
   </script>
-  <script src="http://localhost/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+  <script src="/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
